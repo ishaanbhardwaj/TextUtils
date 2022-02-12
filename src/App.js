@@ -9,6 +9,7 @@ import TextForm from './components/TextForm';
 function App() {
   const [mode, toggleChange] = useState("light");
   const [alert, setAlert] = useState(null);
+  const [hexCode, changeCode] = useState(null);
   
   const showAlert = (message, type) => {
     setAlert({
@@ -17,7 +18,13 @@ function App() {
     })
     setTimeout(() => {
       setAlert(null)
-    }, 1500);
+    }, 2000);
+  }
+
+  const colorChange = () => {
+    changeCode("#d25d6w")
+    document.body.backgroundColor = "#000000";
+    showAlert('Color Chaned', 'success');
   }
 
   const toggleMode = () => {
@@ -25,18 +32,20 @@ function App() {
       toggleChange("dark")
       document.body.backgroundColor = "bg-gray-300";
       showAlert('Dark Mode Enabled', 'success');
+      document.title="TextUtils - Dark Mode";
     } else {
       toggleChange("light")
       document.body.backgroundColor = "bg-white";
-      showAlert('Light Mode Enabled', 'warning');
+      showAlert('Light Mode Enabled', 'success');
+      document.title="TextUtils - Light Mode";
     }
   }
 
   return (
     <>    
-    <Navbar logo = {"Ishaan Bhardwaj"} about = {"About Us"} contact = {"Contact Us"} mode={mode} toggleMode={toggleMode} />
+    <Navbar logo = {"TextUtils"} about = {"About Us"} mode={mode} toggleMode={toggleMode} hexCode={hexCode} colorChange={colorChange} />
     <Alert alert={alert} />
-    <TextForm mode={mode} showAlert={showAlert} />
+    <TextForm mode={mode} hexCode={hexCode} showAlert={showAlert} />
     {/* <DarkMode /> */}
     </>
   );

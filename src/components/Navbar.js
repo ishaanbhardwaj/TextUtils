@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import swal from 'sweetalert';
 
 export default function Navbar(props) {
     return (
@@ -12,7 +11,7 @@ export default function Navbar(props) {
                 </a>
                 <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
                 <a className="mr-5 hover:text-gray-900 text-white">{props.about}</a>
-                <a className="mr-5 hover:text-gray-900 text-white">{props.contact}</a>
+                <a onClick={props.colorChange} className="mr-5 hover:text-gray-900 text-white">Pink</a>
                 </nav>
                 <button onClick={props.toggleMode} className="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">{props.mode==='light'?'Enable Dark Mode':'Enable Light Mode'}</button>
             </div>
@@ -24,11 +23,9 @@ export default function Navbar(props) {
 Navbar.propTypes = {
     logo: PropTypes.string.isRequired,
     about: PropTypes.string.isRequired,
-    contact: PropTypes.string.isRequired,
 }
 
 Navbar.defaultProps = {
     logo: 'Set Logo Here',
     about: 'Set About Text Here',
-    contact: 'Set Contact Text Here'
 }

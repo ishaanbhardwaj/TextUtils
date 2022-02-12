@@ -2,16 +2,15 @@ import React, {useState} from 'react'
 
 export default function TextForm(props) {
     const toUppercase = () => {
-        //console.log("Clicked");
         let convertedText = text.toUpperCase();
         changeText(convertedText);
-        props.showAlert('Changed to Upeercase', 'success');
+        props.showAlert('Text Changed to Upeercase', 'success');
     }
 
     const toLowercase = () => {
-        //console.log("Clicked");
         let convertedText = text.toLowerCase();
         changeText(convertedText);
+        props.showAlert('Text Changed to Lowercase', 'success');
     }
 
     const toCapatalizeCase = () => {
@@ -21,6 +20,7 @@ export default function TextForm(props) {
         }
         let convertedText = str.join(" ");
         changeText(convertedText);
+        props.showAlert('Words First Case Capatalized', 'success');
     }
 
     const toFirstLineCase = () => {
@@ -30,20 +30,24 @@ export default function TextForm(props) {
         }
         let convertedText = str.join(". ");
         changeText(convertedText);
+        props.showAlert('First Line Letter Capatalized', 'success');
     }
 
     const copyText = () => {
         navigator.clipboard.writeText(text);
+        props.showAlert('Text Copied', 'success');
     }
 
     const removeSpace = () => {
         let str = text.replace(/\s+/g,' ');
         changeText(str);
+        props.showAlert('Extra Spaces Removed From Text', 'success');
     }
 
     const clearText = () => {
         let convertedText = '';
         changeText(convertedText);
+        props.showAlert('Text Cleared', 'success');
     }
 
     const typingText = (event) => {
@@ -54,7 +58,7 @@ export default function TextForm(props) {
     return (
         <section className={`text-gray-600 body-font relative ${props.mode==='light'?'bg-gray-100':'bg-gray-900'}`}>
             <div className="container px-5 py-6 mx-auto">
-                <div className="lg:w-1/2 md:w-2/3 mx-auto">
+                <div className="md:w-3/4 mx-auto">
                     <div className="flex flex-wrap">
                         <div className="p-2 w-full">
                             <h1 className="sm:text-3xl text-2xl mb-6 font-medium title-font mb-4 text-gray-900">{props.fetaureheading}</h1>
