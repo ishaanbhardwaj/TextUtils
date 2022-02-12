@@ -1,8 +1,7 @@
-//import logo from './logo.svg';
-// import './App.css';
 import React, {useState} from 'react'
-import Alert from './components/Alert';
-import DarkMode from './components/DarkMode';
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import Contact from './components/Contact';
+import Alert from './components/Alert'
 import Navbar from './components/Navbar';
 import TextForm from './components/TextForm';
 
@@ -42,11 +41,15 @@ function App() {
   }
 
   return (
-    <>    
-    <Navbar logo = {"TextUtils"} about = {"About Us"} mode={mode} toggleMode={toggleMode} hexCode={hexCode} colorChange={colorChange} />
-    <Alert alert={alert} />
-    <TextForm mode={mode} hexCode={hexCode} showAlert={showAlert} />
-    {/* <DarkMode /> */}
+    <>   
+    <Router> 
+      <Navbar logo = {"TextUtils"} contact = {"Contact Us"} mode={mode} toggleMode={toggleMode} hexCode={hexCode} colorChange={colorChange} />
+      <Alert alert={alert} />
+      <Routes>
+        <Route path='/' element={<TextForm mode={mode} hexCode={hexCode} showAlert={showAlert} />}></Route>
+        <Route path='/contact' element={<Contact mode={mode} hexCode={hexCode} showAlert={showAlert} />}></Route>
+      </Routes>
+    </Router>
     </>
   );
 }
